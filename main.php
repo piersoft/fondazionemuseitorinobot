@@ -61,12 +61,18 @@ $reply .="\nTi verranno indicati gli autori e le opere trovate. Potrai cliccare 
 			$text=str_replace("/","",$text);
 
 		}
-			$text=str_replace("9999","/",$text);
-			$text=str_replace("0000",")",$text);
-			$text=str_replace("000",")",$text);
-			$text=str_replace("00","(",$text);
-			$text=str_replace("__"," ",$text);
-			$text=str_replace("_","?",$text);
+if(strpos($text,'9999') === false){
+	$text=str_replace("0000",")",$text);
+	$text=str_replace("000",")",$text);
+	$text=str_replace("00","(",$text);
+	$text=str_replace("__"," ",$text);
+	$text=str_replace("_","?",$text);
+}else {
+	$text=str_replace("9999","/",$text);
+		$text=str_replace("_","?",$text);
+}
+
+
 
 
 		$text=strtoupper($text);
@@ -158,7 +164,7 @@ $reply .="\nTi verranno indicati gli autori e le opere trovate. Potrai cliccare 
 								$filter1=strtoupper($csv[$i][4]);
 								$filter2=strtoupper($csv[$i][0]);
 								$string=$csv[$i][1]."\n".$csv[$i][4]."\n".$string4;
-											$csv[$i][0]=str_replace("/","9999",$csv[$i][0]);
+								$csv[$i][0]=str_replace("/","9999",$csv[$i][0]);
 								$csv[$i][4]=str_replace("-","0000",$csv[$i][4]);
 								$csv[$i][4]=str_replace("(","00",$csv[$i][4]);
 								$csv[$i][4]=str_replace(")","000",$csv[$i][4]);
